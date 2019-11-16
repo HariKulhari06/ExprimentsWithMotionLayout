@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorSide="top"
+            motion:touchAnchorId="@+id/constraintLayout" />
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:elevation="10dp"
+                motion:framePosition="80"
+                motion:motionTarget="@+id/actionBarBg" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        motion:constraintSetEnd="@+id/start"
+        motion:constraintSetStart="@+id/end">
+        <OnClick
+            motion:clickAction="transitionToEnd"
+            motion:targetId="@+id/imageView" />
+        <OnSwipe
+            motion:dragDirection="dragDown"
+            motion:touchAnchorId="@+id/constraintLayout" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start" />
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:elevation="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/actionBarBg" />
+        <Constraint
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:rotation="270"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@+id/actionBarBg"
+            motion:layout_constraintStart_toStartOf="@+id/actionBarBg"
+            motion:layout_constraintTop_toTopOf="@+id/actionBarBg" />
+        <Constraint
+            android:id="@+id/actionBarBg"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:visibility="visible"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@+id/actionBarBg"
+            motion:layout_constraintEnd_toEndOf="@+id/actionBarBg"
+            motion:layout_constraintStart_toStartOf="@+id/actionBarBg"
+            motion:layout_constraintTop_toTopOf="@+id/actionBarBg" />
+    </ConstraintSet>
+
+</MotionScene>
